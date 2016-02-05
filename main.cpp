@@ -8,8 +8,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
     QStandardItemModel* model = new QStandardItemModel();
+    MainWindow w(model);
     Server server(model);
 
     QObject::connect(&w, SIGNAL(startServer()), &server, SLOT(start()));

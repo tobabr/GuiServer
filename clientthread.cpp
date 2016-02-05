@@ -26,6 +26,7 @@ void ClientThread::run()
 
 void ClientThread::readyRead()
 {
+
     QByteArray data = socket->readAll();
 
     socket->write(data);

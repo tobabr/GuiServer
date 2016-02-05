@@ -7,12 +7,14 @@ namespace Ui {
 class MainWindow;
 }
 
+class QStandardItemModel;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QStandardItemModel* model, QWidget *parent = 0);
     ~MainWindow();
 
 signals:
@@ -28,6 +30,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel *_model;
 
 };
 

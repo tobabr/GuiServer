@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QTcpServer>
-#include <QAbstractItemModel>
+#include <QStandardItemModel>
 
 
 class Server : public QTcpServer
@@ -11,7 +11,7 @@ class Server : public QTcpServer
     Q_OBJECT
 
 public:
-    explicit Server(QAbstractItemModel* model, QObject * parent = 0);
+    explicit Server(QStandardItemModel* model, QObject * parent = 0);
 
 public slots:
     void start();
@@ -21,9 +21,8 @@ signals:
 
 
 private:
-    QAbstractItemModel* _model;
-
-    void incommingConnection(qintptr socketDesc);
+    QStandardItemModel* _model;
+    virtual void incomingConnection(qintptr socketDesc) override;
 };
 
 #endif // SERVER_H

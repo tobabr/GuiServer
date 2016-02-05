@@ -1,9 +1,12 @@
+#include <QList>
+#include <QStandardItem>
+#include <QMessageBox>
 
 #include "server.h"
 #include "clientthread.h"
 
 
-Server::Server(QAbstractItemModel* model, QObject* parent) :
+Server::Server(QStandardItemModel* model, QObject* parent) :
     QTcpServer(parent), _model(model)
 {
 
@@ -20,10 +23,16 @@ void Server::start()
 }
 
 
-void Server::incommingConnection(qintptr socketDesc)
+void Server::incomingConnection(qintptr socketDesc)
 {
-    ClientThread* client = new ClientThread(socketDesc, this);
+    QList<QStandardItem*> clients;
+    QStandardItem* client = new QStandardItem(QString::number(socketDesc));
+    clients.push_back(client);
 
-   connect(client, SIGNAL(finished()), client, SLOT(deleteLater()));
-    client->start();
+    ClientThread* clientTh = new ClientThread(socketDesc, this);
+
+    connect(clientTh, SIGNAL(finished()), clientTh, SLOT(deleteLater()));
+    clientTh->start();
+
+    _model->appendColumn(clients);
 }

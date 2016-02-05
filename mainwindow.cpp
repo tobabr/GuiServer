@@ -1,12 +1,13 @@
+#include <QStandardItemModel>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QStandardItemModel* model, QWidget *parent) :
+    QMainWindow(parent), ui(new Ui::MainWindow), _model(model)
 {
     ui->setupUi(this);
+    ui->treeView->setModel(_model);
 }
 
 MainWindow::~MainWindow()
