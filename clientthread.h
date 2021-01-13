@@ -3,7 +3,7 @@
 
 #include <QThread>
 #include <QTcpSocket>
-
+// Adding some comment
 class ClientThread : public QThread
 {
     Q_OBJECT
