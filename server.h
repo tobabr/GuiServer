@@ -5,6 +5,7 @@
 #include <QTcpServer>
 #include <QStandardItemModel>
 
+// Making some comments in server
 
 class Server : public QTcpServer
 {
